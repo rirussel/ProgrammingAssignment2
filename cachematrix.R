@@ -1,7 +1,10 @@
-## A pair of functions to implement a cacheable matrix inversion 
+## A pair of functions to implement matrix inversion with a cache for
+## R Programming assignment 2
 
 ## Construct a matrix, and return a list of four functions that respectively
-## set & get the matrix, set the cached inverse, and return the cached inverse
+## set & get the matrix, cache the inverse, and return the cached inverse
+## > makeCacheMatrix()  - initialise with empty matrix
+## > makeCacheMatrix(x) - initialise with matrix x
 
 makeCacheMatrix <- function(x = matrix()) {
     minv <- NULL
@@ -15,15 +18,13 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set = set, get = get,
          setinverse = setinverse,
          getinverse = getinverse)
-    
 }
 
-
-## Return the inverse of matrix x, using the cached version if available
+## Return the inverse of matrix x, using the cached version if available.
+## Print a message to show when the cached version is being used.
+## If cached version not available, compute the inverse and store it in the cache.
 
 cacheSolve <- function(x) {
-        ## Return a matrix that is the inverse of 'x'
-
     minv <- x$getinverse()
     if(!is.null(minv)) {
         message("getting cached data")
